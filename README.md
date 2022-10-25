@@ -1,4 +1,4 @@
-#runMetamix
+# runMetamix
 
 The goal of this script is to implement Metamix. Metamix is a package for resolving complex metagenomic mixtures by analyzing deep sequencing data using a mixture model-based approach. 
 
