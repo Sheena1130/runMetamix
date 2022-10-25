@@ -1,8 +1,8 @@
 # runMetamix
 
-The goal of this script is to implement Metamix. Metamix is a package for resolving complex metagenomic mixtures by analyzing deep sequencing data using a mixture model-based approach. 
+The goal of this script is to implement metaMix. metaMix is a package for resolving complex metagenomic mixtures by analyzing deep sequencing data using a mixture model-based approach. 
 
-As for more details, please check on the [Metamix package website](https://cran.r-project.org/web/packages/Metamix/). Also, you can look into the official documents such as [reference manual](https://cran.r-project.org/web/packages/Metamix/Metamix.pdf) and [user guide](https://cran.r-project.org/web/packages/Metamix/vignettes/guide.pdf).
+As for more details, please check on the [metaMix package website](https://cran.r-project.org/web/packages/metaMix/). Also, you can look into the official documents such as [reference manual](https://cran.r-project.org/web/packages/metaMix/metaMix.pdf) and [user guide](https://cran.r-project.org/web/packages/metaMix/vignettes/guide.pdf).
 
 
 ## Prerequest
@@ -10,18 +10,18 @@ Our environment is Ubuntu 20.04 (GNU/Linux 5.15.0-41-generic x86_64). Some prere
 
 ``` shell
 # Install Ubuntu packages
-sudo apt install openmpi-bin  # openMPI to run Metamix
+sudo apt install openmpi-bin  # openMPI to run metaMix
 sudo apt install wget  # GNU Wget to download BLAST data
 sudo apt install samtools  # Samtools to get read weights
 sudo apt install r-base  # R
 
 # Install R packages
-Rscript -e 'install.packages("Metamix")'
+Rscript -e 'install.packages("metaMix")'
 Rscript -e 'install.packages("argparse")'
 ```
 
 ## Preprocess
-Since there are several files required for running Metamix, preprocessing is inevitable. The files prepared for running Metamix including `blast_out.txt`, `readweights.txt` and `names.dmp`, which can be obtained in the following steps.
+Since there are several files required for running metaMix, preprocessing is inevitable. The files prepared for running metaMix including `blast_out.txt`, `readweights.txt` and `names.dmp`, which can be obtained in the following steps.
 
 ### Step 0. Prepare sample files
 Sample files should be prepared by your own, including  `fa` and `bam`. In this implementation, we named the sample files as `sample.fa` and `sample.bam`.
@@ -77,11 +77,11 @@ wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
 tar axvf taxdump.tar.gz
 ```
 
-## Usage of Metamix
-After all the preprocess work, you can start to run Metamix by using `runMetamix.R`. Three files including `blast_out.txt`, `readweights.txt` and `names.dmp` will be the input of this R script. In the end, you can get `output.txt` as the final result file!
+## Usage of metaMix
+After all the preprocess work, you can start to run metaMix by using `runMetamix.R`. Three files including `blast_out.txt`, `readweights.txt` and `names.dmp` will be the input of this R script. In the end, you can get `output.txt` as the final result file!
 
 ``` shell
-# Run Metamix and get the final output
+# Run metaMix and get the final output
 # [Note] Running this script may take some time for the analysis.
 # [Note] Threads can't be large than 64.
 Rscript runMetamix.R \
