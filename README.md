@@ -2,7 +2,7 @@
 
 The goal of this script is to implement metaMix. metaMix is a package for resolving complex metagenomic mixtures by analyzing deep sequencing data using a mixture model-based approach. 
 
-As for more details, please check on the [metaMix package website](https://cran.r-project.org/web/packages/metaMix/). Also, you can look into the official documents such as [reference manual](https://cran.r-project.org/web/packages/metaMix/metaMix.pdf) and [user guide](https://cran.r-project.org/web/packages/metaMix/vignettes/guide.pdf).
+As for more details, please check on the [metaMix package website](https://cran.r-project.org/web/packages/metaMix/). Also, you can look into [reference manual](https://cran.r-project.org/web/packages/metaMix/metaMix.pdf), [user guide](https://cran.r-project.org/web/packages/metaMix/vignettes/guide.pdf) and [published paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4565032/).
 
 
 ## Prerequest
@@ -24,7 +24,7 @@ Rscript -e 'install.packages("argparse")'
 Since there are several files required for running metaMix, preprocessing is inevitable. The files prepared for running metaMix including `blast_out.txt`, `readweights.txt` and `names.dmp`, which can be obtained in the following steps.
 
 ### Step 0. Prepare sample files
-Sample files should be prepared by your own, including  `fa` and `bam`. In this implementation, we named the sample files as `sample.fa` and `sample.bam`.
+Sample files should be prepared by your own, including  `fa` and `bam`. In this implementation, we named the sample files as `sample.fa` and `sample.bam`, while `sample.fa` is contig and `sample.bam` is reads mapped to `sample.fa`.
 
 ### Step 1. Get BLAST output
 The first step is to get output from BLAST, while `sample.fa` is the input file. As for this step, you can either get the results from [BLAST website](https://blast.ncbi.nlm.nih.gov/Blast.cgi) by using [blastx](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastx&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) or using our code shown below. **Just be aware that for the BLAST site, sequences that are too long are prohibited.**
