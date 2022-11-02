@@ -2,7 +2,7 @@
 
 The goal of this script is to implement metaMix. metaMix is a package for resolving complex metagenomic mixtures by analyzing deep sequencing data using a mixture model-based approach. 
 
-As for more details, please check on the [metaMix package website](https://cran.r-project.org/web/packages/metaMix/). Also, you can look into [reference manual](https://cran.r-project.org/web/packages/metaMix/metaMix.pdf), [user guide](https://cran.r-project.org/web/packages/metaMix/vignettes/guide.pdf) and [published paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4565032/).
+As for more details, please check on the [metaMix package website](https://cran.r-project.org/web/packages/metaMix/). Also, you can look into [reference manual](https://cran.r-project.org/web/packages/metaMix/metaMix.pdf), [user guide](https://cran.r-project.org/web/packages/metaMix/vignettes/guide.pdf) and [related paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4565032/).
 
 
 ## Prerequest
