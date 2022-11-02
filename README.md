@@ -21,10 +21,21 @@ Rscript -e 'install.packages("argparse")'
 ```
 
 ## Preprocess
-Since there are several files required for running metaMix, preprocessing is inevitable. The files prepared for running metaMix including `blast_out.txt`, `readweights.txt` and `names.dmp`, which can be obtained in the following steps.
+Since there are several files required for running metaMix, preprocessing is inevitable. The files prepared for running metaMix including `blast_out.txt`, `readweights.txt` and `names.dmp`, which can be obtained in the following steps. For initial users, you can use sample files offered by metaMix package simply by using the code below, and jumped to the section ***Usage of metaMix***. For other users who wants to use your own data, you can go through ***Preprocess*** section to get files to run metaMix.
+
+```shell
+# Get sample files
+cp /usr/local/lib/R/site-library/metaMix/extdata/blastOut_custom.tab .  # get blastOut_custom.tab
+cp /usr/local/lib/R/site-library/metaMix/extdata/read_weights.tab .  # get read_weights.tab
+cp /usr/local/lib/R/site-library/metaMix/extdata/names_example.dmp .  # get names_example.dmp
+
+mv blastOut_custom.tab blast_out.txt  # rename blastOut_custom.tab as blast_out.txt
+mv read_weights.tab readweights.txt  # rename read_weights.tab as readweights.txt
+mv names_example.dmp names.dmp  # rename names_example.tab as names.txt
+```
 
 ### Step 0. Prepare sample files
-Sample files should be prepared by your own, including  `fa` and `bam`. In this implementation, we named the sample files as `sample.fa` and `sample.bam`, while `sample.fa` is contig and `sample.bam` is reads mapped to `sample.fa`.
+Sample files should be prepared by your own, including  `fa` and `bam`. In this implementation, we named the sample files as `sample.fa` and `sample.bam`, while `sample.fa` is contig along with reads and `sample.bam` is reads mapped to the contig.
 
 ### Step 1. Get BLAST output
 The first step is to get output from BLAST, while `sample.fa` is the input file. As for this step, you can either get the results from [BLAST website](https://blast.ncbi.nlm.nih.gov/Blast.cgi) by using [blastx](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastx&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) or using our code shown below. **Just be aware that for the BLAST site, sequences that are too long are prohibited.**
@@ -85,7 +96,7 @@ After all the preprocess work, you can start to run metaMix by using `runMetamix
 # [Note] Running this script may take some time for the analysis.
 # [Note] Threads can't be large than 64.
 Rscript runMetamix.R \
-  --threads $(nproc) \
+  --threads $(expr $(nproc) / 2 - 1) \
   --contig_blast blast_out.txt \
   --contig_weights readweights.txt \
   --taxonomy_names taxdump/names.dmp \
