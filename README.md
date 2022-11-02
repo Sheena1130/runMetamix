@@ -24,7 +24,7 @@ Rscript -e 'install.packages("argparse")'
 Since there are several files required for running metaMix, preprocessing is inevitable. The files prepared for running metaMix including `blast_out.txt`, `readweights.txt` and `names.dmp`, which can be obtained in the following steps.
 
 ### Step 0. Prepare sample files
-Sample files should be prepared by your own, including  `fa` and `bam`. In this implementation, we named the sample files as `sample.fa` and `sample.bam`.
+Sample files should be prepared by your own, including  `fa` and `bam`. In this implementation, we named the sample files as `sample.fa` and `sample.bam`, while `sample.fa` is contig and `sample.bam` is reads mapped to `sample.fa`.
 
 ### Step 1. Get BLAST output
 The first step is to get output from BLAST, while `sample.fa` is the input file. As for this step, you can either get the results from [BLAST website](https://blast.ncbi.nlm.nih.gov/Blast.cgi) by using [blastx](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastx&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) or using our code shown below. **Just be aware that for the BLAST site, sequences that are too long are prohibited.**
