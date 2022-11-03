@@ -21,7 +21,7 @@ Rscript -e 'install.packages("argparse")'
 ```
 
 ## Preprocess
-Since there are several files required for running metaMix, preprocessing is inevitable. The files prepared for running metaMix including `blast_out.txt`, `readweights.txt` and `names.dmp`, which can be obtained in the following steps. For initial users, you can use sample files offered by metaMix package simply by using the code below, and jumped to the section ***Usage of metaMix***. For other users who wants to use your own data, you can go through ***Preprocess*** section to get files to run metaMix.
+Since there are several files required for running metaMix, preprocessing is inevitable. The files prepared for running metaMix including `blast_out.txt`, `readweights.txt` and `names.dmp`, which can be obtained in the following steps. For initial users, you can use sample files offered by metaMix package simply by using the code below, and jumped to the section ***Usage of metaMix***. For other users who want to use your own data, you can go through ***Preprocess*** section to get files to run metaMix.
 
 ```shell
 # Get sample files
