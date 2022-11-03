@@ -94,9 +94,9 @@ After all the preprocess work, you can start to run metaMix by using `runMetamix
 ``` shell
 # Run metaMix and get the final output
 # [Note] Running this script may take some time for the analysis.
-# [Note] Threads can't be large than 64.
+# [Note] Threads can't be large than number of physical cores minus one (i.e. num_physical_cores - 1).
 Rscript runMetamix.R \
-  --threads $(expr $(nproc) / 2 - 1) \
+  --threads 1 \
   --contig_blast blast_out.txt \
   --contig_weights readweights.txt \
   --taxonomy_names taxdump/names.dmp \
