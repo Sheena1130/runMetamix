@@ -38,7 +38,7 @@ mv names_example.dmp names.dmp  # rename names_example.tab as names.txt
 Sample files should be prepared by your own, including  `fa` and `bam`. In this implementation, we named the sample files as `sample.fa` and `sample.bam`, while `sample.fa` is contig along with reads and `sample.bam` is reads mapped to the contig.
 
 ### Step 1. Get BLAST output
-The first step is to get output from BLAST, while `sample.fa` is the input file. As for this step, you can either get the results from [BLAST website](https://blast.ncbi.nlm.nih.gov/Blast.cgi) by using [blastx](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastx&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) or using our code shown below. **Just be aware that for the BLAST site, sequences that are too long are prohibited.**
+The first step is to get output from BLAST, while `sample.fa` is the input file. The goal in this step is to compare a nucleotide query sequence against a protein sequence database. To get the results, you can either use [blastx](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastx&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) on the [BLAST website](https://blast.ncbi.nlm.nih.gov/Blast.cgi) or use our code shown below. **Just be aware that for the BLAST site, sequences that are too long are prohibited.**
 
 The database we use in this step is **non-redundant protein sequences (nr) from NCBI**. You can use other databases that suit your needs. Check [BLAST database](https://ftp.ncbi.nlm.nih.gov/blast/db/) to see all the options.
 
@@ -67,6 +67,7 @@ ncbi-blast-2.13.0+/bin/blastx -db blast_db/nr \
     -out blast_out.txt \
     -num_threads $(nproc)
 ```
+If your goal is to compare a protein query sequence against a protein sequence database, you should use [blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch) instead of blastx and use nucleotide collection (nr/nt) as database.
 
 ### Step 2. Get read weights
 The next step of preprocessing is getting read weights from `sample.bam`. Here we use [samtools coverage](http://www.htslib.org/doc/samtools-coverage.html) as our tool and get `readweights.txt` as the result.
@@ -94,11 +95,15 @@ After all the preprocess work, you can start to run metaMix by using `runMetamix
 ``` shell
 # Run metaMix and get the final output
 # [Note] Running this script may take some time for the analysis.
+# [Note] If blast_out.txt comes from blastn, use 'nucl' as type instead of 'prot'.
 # [Note] Threads can't be large than number of physical cores minus one (i.e. num_physical_cores - 1).
 Rscript runMetamix.R \
-  --threads 1 \
-  --contig_blast blast_out.txt \
-  --contig_weights readweights.txt \
+  --reads_blast blast_out.txt \
+  --reads_weights readweights.txt \
   --taxonomy_names taxdump/names.dmp \
-  --output output.txt
+  --output output.txt \
+  --type 'prot' \
+  --read_support 10 \
+  --poster_prob_thr 0.9 \
+  --threads 1 \
 ```
