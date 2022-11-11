@@ -6,10 +6,10 @@ parser$add_argument('--reads_blast', required = TRUE, help = 'path to input file
 parser$add_argument('--reads_weights', required = TRUE, help = 'path to read weight file')
 parser$add_argument('--taxonomy_names', required = TRUE, help = 'path to taxonomy file')
 parser$add_argument('--output', required = TRUE, help = 'path to output file')
-parser$add_argument('--type', default = 'prot', required = TRUE, help = 'prot or nucl')
-parser$add_argument('--read_support', default = 10, required = TRUE, help = '(for viral identification) in human clinical samples r = 10, in environmental samples r = 30')
-parser$add_argument('--poster_prob_thr', default = 0.9, required = TRUE, help = 'posterior probability of presence of species threshold for reporting in the species summary')
-parser$add_argument('--threads', default = 1, type = "integer", help = 'number of threads')
+parser$add_argument('--type', required = TRUE, help = 'prot or nucl')
+parser$add_argument('--read_support', type = integer, default = 10, help = '(for viral identification) in human clinical samples r = 10, in environmental samples r = 30')
+parser$add_argument('--poster_prob_thr', type = float, default = 0.9, help = 'posterior probability of presence of species threshold for reporting in the species summary')
+parser$add_argument('--threads', default = 1, type = integer, help = 'number of threads')
 
 args <- parser$parse_args()
 

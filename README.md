@@ -67,7 +67,7 @@ ncbi-blast-2.13.0+/bin/blastx -db blast_db/nr \
     -out blast_out.txt \
     -num_threads $(nproc)
 ```
-If your goal is to compare a protein query sequence against a protein sequence database, you should use [blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch) instead of blastx and use nucleotide collection (nr/nt) as database.
+In this step, if you want to translate nucleotide query sequence (input) into pretein and compare against BLAST database, use blastx along with nr as database, which is written in the above code. Otherwise, if you want to directly compare the input against BLAST, use [blastn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch) along with nt as database.
 
 ### Step 2. Get read weights
 The next step of preprocessing is getting read weights from `sample.bam`. Here we use [samtools coverage](http://www.htslib.org/doc/samtools-coverage.html) as our tool and get `readweights.txt` as the result.
