@@ -16,7 +16,12 @@ sudo apt install samtools  # Samtools to get read weights
 sudo apt install r-base  # R
 
 # Install R packages
-Rscript -e 'install.packages("metaMix")'
+# Rscript -e 'install.packages("metaMix")'
+
+# original metaMix 0.3 have a broken parallel.temper.nucl function
+Rscript -e 'install.packages("remotes")'
+Rscript -e 'remotes::install_github("fo40225/metaMix", upgrade = "never")'
+
 Rscript -e 'install.packages("argparse")'
 ```
 
@@ -96,7 +101,7 @@ After all the preprocess work, you can start to run metaMix by using `runMetamix
 # Run metaMix and get the final output
 # [Note] Running this script may take some time for the analysis.
 # [Note] If blast_out.txt comes from blastn, use 'nucl' as type instead of 'prot'.
-# [Note] Threads can't be large than number of physical cores minus one (i.e. num_physical_cores - 1).
+# [Note] Threads can't be less than 2 or greater than the number of physical cores minus one (i.e. num_physical_cores - 1) [Default: 12].
 Rscript runMetamix.R \
   --reads_blast blast_out.txt \
   --reads_weights readweights.txt \
@@ -105,5 +110,5 @@ Rscript runMetamix.R \
   --type 'prot' \
   --read_support 10 \
   --poster_prob_thr 0.9 \
-  --threads 1 \
+  --threads 12
 ```
